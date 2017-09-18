@@ -4,13 +4,15 @@ A linear regression learning algorithm example using TensorFlow library.
 Author: Aymeric Damien
 Project: https://github.com/aymericdamien/TensorFlow-Examples/
 '''
-
 from __future__ import print_function
+import matplotlib
+matplotlib.use("Agg")
 
 import tensorflow as tf
 import numpy
 import matplotlib.pyplot as plt
 rng = numpy.random
+
 
 # Parameters
 learning_rate = 0.01
@@ -86,4 +88,5 @@ with tf.Session() as sess:
     plt.plot(test_X, test_Y, 'bo', label='Testing data')
     plt.plot(train_X, sess.run(W) * train_X + sess.run(b), label='Fitted line')
     plt.legend()
-    plt.show()
+    #plt.show()
+    plt.savefig("/var/www/node.png")
