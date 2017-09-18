@@ -12,12 +12,24 @@ import tensorflow as tf
 import numpy
 import matplotlib.pyplot as plt
 rng = numpy.random
+import argparse
 
+parser = argparse.ArgumentParser(description="linear regression")
+parser.add_argument("--learning_rate",type=float, default=0.01, help="model learning rate")
+parser.add_argument("--training_epochs",type=int, default=1000, help="model training epochs")
+parser.add_argument("--display_step",type=int,default=50,help="model display step")
+
+args = parser.parse_args()
 
 # Parameters
-learning_rate = 0.01
-training_epochs = 1000
-display_step = 50
+learning_rate = args.learning_rate
+training_epochs = args.training_epochs
+display_step = args.display_step
+
+# Parameters
+#learning_rate = 0.01
+#training_epochs = 1000
+#display_step = 50
 
 # Training Data
 train_X = numpy.asarray([3.3,4.4,5.5,6.71,6.93,4.168,9.779,6.182,7.59,2.167,
