@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 rng = numpy.random
 import argparse
 
-parser = argparse.ArgumentParser(description="linear regression")
+parser = argparse.ArgumentParser(description="A linear regression learning algorithm example using TensorFlow library.")
 parser.add_argument("--learning_rate",type=float, default=0.01, help="model learning rate")
 parser.add_argument("--training_epochs",type=int, default=1000, help="model training epochs")
 parser.add_argument("--display_step",type=int,default=50,help="model display step")

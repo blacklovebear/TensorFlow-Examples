@@ -4,7 +4,7 @@ Build and train a convolutional neural network with TensorFlow.
 This example is using the MNIST database of handwritten digits
 (http://yann.lecun.com/exdb/mnist/)
 
-This example is using TensorFlow layers API, see 'convolutional_network_raw' 
+This example is using TensorFlow layers API, see 'convolutional_network_raw'
 example for a raw implementation with variables.
 
 Author: Aymeric Damien
@@ -18,15 +18,42 @@ mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
 
 import tensorflow as tf
 
+import argparse
+
+parser = argparse.ArgumentParser(description="""Build and train a convolutional neural network with TensorFlow.
+This example is using the MNIST database of handwritten digits
+(http://yann.lecun.com/exdb/mnist/)""")
+
+parser.add_argument("--learning_rate",type=float, default=0.001, help="model learning rate")
+parser.add_argument("--num_steps",type=int, default=2000, help="model num of step")
+parser.add_argument("--batch_size",type=int, default=128, help="model batch size")
+
+
+parser.add_argument("--num_input",type=int,default=784,help=" MNIST data input (img shape: 28*28)")
+parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
+parser.add_argument("--dropout",type=float,default=0.75,help="Dropout, probability to keep units")
+
+args = parser.parse_args()
+
 # Training Parameters
-learning_rate = 0.001
-num_steps = 2000
-batch_size = 128
+learning_rate = args.learning_rate
+num_steps = args.num_steps
+batch_size = args.batch_size
 
 # Network Parameters
-num_input = 784 # MNIST data input (img shape: 28*28)
-num_classes = 10 # MNIST total classes (0-9 digits)
-dropout = 0.75 # Dropout, probability to keep units
+num_input = args.num_input
+num_classes = args.num_classes
+dropout = args.dropout
+
+# Training Parameters
+# learning_rate = 0.001
+# num_steps = 2000
+# batch_size = 128
+
+# Network Parameters
+# num_input = 784 # MNIST data input (img shape: 28*28)
+# num_classes = 10 # MNIST total classes (0-9 digits)
+# dropout = 0.75 # Dropout, probability to keep units
 
 
 # Create the neural network

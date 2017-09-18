@@ -21,18 +21,45 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
 
 import tensorflow as tf
+import argparse
+
+parser = argparse.ArgumentParser(description="""A 2-Hidden Layers Fully Connected Neural Network (a.k.a Multilayer Perceptron)
+implementation with TensorFlow. This example is using the MNIST database
+of handwritten digits (http://yann.lecun.com/exdb/mnist/).""")
+
+parser.add_argument("--learning_rate",type=float, default=0.1, help="model learning rate")
+parser.add_argument("--num_steps",type=int, default=1000, help="model num of step")
+parser.add_argument("--batch_size",type=int, default=128, help="model batch size")
+parser.add_argument("--display_step",type=int,default=100,help="model display step")
+
+parser.add_argument("--n_hidden_1",type=int,default=256,help="1st layer number of neurons")
+parser.add_argument("--n_hidden_2",type=int,default=256,help="2nd layer number of neurons")
+parser.add_argument("--num_input",type=int,default=784,help="MNIST data input (img shape: 28*28)")
+parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
+
+args = parser.parse_args()
+
+learning_rate = args.learning_rate
+num_steps = args.num_steps
+batch_size = args.batch_size
+display_step = args.display_step
+
+n_hidden_1 = args.n_hidden_1 # 1st layer number of neurons
+n_hidden_2 = args.n_hidden_2 # 2nd layer number of neurons
+num_input = args.num_input # MNIST data input (img shape: 28*28)
+num_classes = args.num_classes # MNIST total classes (0-9 digits)
 
 # Parameters
-learning_rate = 0.1
-num_steps = 1000
-batch_size = 128
-display_step = 100
+# learning_rate = 0.1
+# num_steps = 1000
+# batch_size = 128
+# display_step = 100
 
 # Network Parameters
-n_hidden_1 = 256 # 1st layer number of neurons
-n_hidden_2 = 256 # 2nd layer number of neurons
-num_input = 784 # MNIST data input (img shape: 28*28)
-num_classes = 10 # MNIST total classes (0-9 digits)
+# n_hidden_1 = 256 # 1st layer number of neurons
+# n_hidden_2 = 256 # 2nd layer number of neurons
+# num_input = 784 # MNIST data input (img shape: 28*28)
+# num_classes = 10 # MNIST total classes (0-9 digits)
 
 
 # Define the neural network
