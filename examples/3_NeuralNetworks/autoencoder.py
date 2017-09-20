@@ -15,6 +15,9 @@ Author: Aymeric Damien
 Project: https://github.com/aymericdamien/TensorFlow-Examples/
 """
 from __future__ import division, print_function, absolute_import
+import matplotlib
+matplotlib.use("Agg")
+
 
 import tensorflow as tf
 import numpy as np
@@ -134,9 +137,11 @@ with tf.Session() as sess:
     print("Original Images")
     plt.figure(figsize=(n, n))
     plt.imshow(canvas_orig, origin="upper", cmap="gray")
-    plt.show()
+    #plt.show()
+    plt.savefig("/var/www/autoencoder1.png")
 
     print("Reconstructed Images")
     plt.figure(figsize=(n, n))
     plt.imshow(canvas_recon, origin="upper", cmap="gray")
-    plt.show()
+    plt.savefig("/var/www/autoencoder2.png")
+    #plt.show()
