@@ -20,6 +20,8 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 """
 
 from __future__ import division, print_function, absolute_import
+import matplotlib
+matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -29,16 +31,43 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
-# Training Params
-num_steps = 100000
-batch_size = 128
-learning_rate = 0.0002
+import argparse
 
-# Network Params
-image_dim = 784 # 28*28 pixels
-gen_hidden_dim = 256
-disc_hidden_dim = 256
-noise_dim = 100 # Noise data points
+parser = argparse.ArgumentParser(description="""Generative Adversarial Networks (GAN).
+
+Using generative adversarial networks (GAN) to generate digit images from a
+noise distribution.""")
+
+parser.add_argument("--learning_rate",type=float, default=0.0002, help="model learning rate")
+parser.add_argument("--num_steps",type=int, default=100000, help="model num steps")
+parser.add_argument("--batch_size",type=int, default=128, help="model batch size")
+
+parser.add_argument("--image_dim",type=int,default=784,help="MNIST data input (img shape: 28*28)")
+parser.add_argument("--gen_hidden_dim",type=int,default=256,help="generate hidden dim ")
+parser.add_argument("--disc_hidden_dim",type=int,default=256,help="adversarial hidden dim")
+parser.add_argument("--noise_dim",type=int,default=100,help="generate noise dim")
+
+args = parser.parse_args()
+
+learning_rate = args.learning_rate
+num_steps = args.num_steps
+batch_size = args.batch_size
+
+image_dim = args.image_dim
+gen_hidden_dim = args.gen_hidden_dim
+disc_hidden_dim = args.disc_hidden_dim
+noise_dim = args.noise_dim
+
+# # Training Params
+# learning_rate = 0.0002
+# num_steps = 100000
+# batch_size = 128
+
+# # Network Params
+# image_dim = 784 # 28*28 pixels
+# gen_hidden_dim = 256
+# disc_hidden_dim = 256
+# noise_dim = 100 # Noise data points
 
 # A custom initialization (see Xavier Glorot init)
 def glorot_init(shape):

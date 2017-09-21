@@ -26,17 +26,47 @@ mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 import tensorflow as tf
 
-# Parameters
-learning_rate = 0.001
-training_epochs = 15
-batch_size = 100
-display_step = 1
+import argparse
 
-# Network Parameters
-n_hidden_1 = 256 # 1st layer number of neurons
-n_hidden_2 = 256 # 2nd layer number of neurons
-n_input = 784 # MNIST data input (img shape: 28*28)
-n_classes = 10 # MNIST total classes (0-9 digits)
+parser = argparse.ArgumentParser(description="""Multilayer Perceptron.
+
+A Multilayer Perceptron (Neural Network) implementation example using
+TensorFlow library. This example is using the MNIST database of handwritten
+digits (http://yann.lecun.com/exdb/mnist/).""")
+
+parser.add_argument("--learning_rate",type=float, default=0.001, help="model learning rate")
+parser.add_argument("--training_epochs",type=int, default=15, help="model training epochs")
+parser.add_argument("--batch_size",type=int, default=100, help="model batch size")
+parser.add_argument("--display_step",type=int,default=1,help="model display step")
+
+parser.add_argument("--n_hidden_1",type=int,default=256,help="1st layer num features")
+parser.add_argument("--n_hidden_2",type=int,default=256,help="2nd layer num features")
+parser.add_argument("--n_input",type=int,default=784,help="MNIST data input (img shape: 28*28)")
+parser.add_argument("--n_classes",type=int,default=10,help="MNIST data output classes")
+
+args = parser.parse_args()
+
+
+learning_rate = args.learning_rate
+training_epochs = args.training_epochs
+batch_size = args.batch_size
+display_step = args.display_step
+n_hidden_1 = args.n_hidden_1
+n_hidden_2 = args.n_hidden_2
+n_input = args.n_input
+n_classes = args.n_classes
+
+# # Parameters
+# learning_rate = 0.001
+# training_epochs = 15
+# batch_size = 100
+# display_step = 1
+
+# # Network Parameters
+# n_hidden_1 = 256 # 1st layer number of neurons
+# n_hidden_2 = 256 # 2nd layer number of neurons
+# n_input = 784 # MNIST data input (img shape: 28*28)
+# n_classes = 10 # MNIST total classes (0-9 digits)
 
 # tf Graph input
 X = tf.placeholder("float", [None, n_input])

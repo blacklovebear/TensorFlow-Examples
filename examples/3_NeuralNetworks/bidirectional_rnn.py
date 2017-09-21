@@ -1,7 +1,7 @@
 """ Bi-directional Recurrent Neural Network.
 
-A Bi-directional Recurrent Neural Network (LSTM) implementation example using 
-TensorFlow library. This example is using the MNIST database of handwritten 
+A Bi-directional Recurrent Neural Network (LSTM) implementation example using
+TensorFlow library. This example is using the MNIST database of handwritten
 digits (http://yann.lecun.com/exdb/mnist/)
 
 Links:
@@ -27,18 +27,46 @@ To classify images using a bidirectional recurrent neural network, we consider
 every image row as a sequence of pixels. Because MNIST image shape is 28*28px,
 we will then handle 28 sequences of 28 steps for every sample.
 '''
+import argparse
 
-# Training Parameters
-learning_rate = 0.001
-training_steps = 10000
-batch_size = 128
-display_step = 200
+parser = argparse.ArgumentParser(description="""A Bi-directional Recurrent Neural Network (LSTM) implementation example using
+TensorFlow library. This example is using the MNIST database of handwritten
+digits (http://yann.lecun.com/exdb/mnist/)""")
 
-# Network Parameters
-num_input = 28 # MNIST data input (img shape: 28*28)
-timesteps = 28 # timesteps
-num_hidden = 128 # hidden layer num of features
-num_classes = 10 # MNIST total classes (0-9 digits)
+parser.add_argument("--learning_rate",type=float, default=0.001, help="model learning rate")
+parser.add_argument("--training_steps",type=int, default=10000, help="model training steps")
+parser.add_argument("--batch_size",type=int, default=128, help="model batch size")
+parser.add_argument("--display_step",type=int, default=200, help="model display step")
+
+parser.add_argument("--num_input",type=int,default=28,help="MNIST data input (img shape: 28*28)")
+parser.add_argument("--timesteps",type=int,default=28,help="timesteps")
+parser.add_argument("--num_hidden",type=int,default=128,help="hidden layer num of features")
+parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
+
+args = parser.parse_args()
+
+learning_rate = args.learning_rate
+training_steps = args.training_steps
+batch_size = args.batch_size
+display_step = args.display_step
+
+num_input = args.num_input
+timesteps = args.timesteps
+num_hidden = args.num_hidden
+num_classes = args.num_classes
+
+
+# # Training Parameters
+# learning_rate = 0.001
+# training_steps = 10000
+# batch_size = 128
+# display_step = 200
+
+# # Network Parameters
+# num_input = 28 # MNIST data input (img shape: 28*28)
+# timesteps = 28 # timesteps
+# num_hidden = 128 # hidden layer num of features
+# num_classes = 10 # MNIST total classes (0-9 digits)
 
 # tf Graph input
 X = tf.placeholder("float", [None, timesteps, num_input])

@@ -31,15 +31,39 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
-# Parameters
-learning_rate = 0.001
-num_steps = 30000
-batch_size = 64
+import argparse
 
-# Network Parameters
-image_dim = 784 # MNIST images are 28x28 pixels
-hidden_dim = 512
-latent_dim = 2
+parser = argparse.ArgumentParser(description="""Variational Auto-Encoder Example.
+
+Using a variational auto-encoder to generate digits images from noise.
+MNIST handwritten digits are used as training examples.""")
+
+parser.add_argument("--learning_rate",type=float, default=0.01, help="model learning rate")
+parser.add_argument("--num_steps",type=int, default=30000, help="model num of step")
+parser.add_argument("--batch_size",type=int, default=64, help="model batch size")
+
+parser.add_argument("--image_dim",type=int,default=784,help="image dim num (28*28)")
+parser.add_argument("--hidden_dim",type=int,default=512,help="hidden dim num")
+parser.add_argument("--latent_dim",type=int,default=2,help="latent dim num")
+
+args = parser.parse_args()
+learning_rate = args.learning_rate
+num_steps = args.num_steps
+batch_size = args.batch_size
+image_dim = args.image_dim
+hidden_dim = args.hidden_dim
+latent_dim = args.latent_dim
+
+
+# # Parameters
+# learning_rate = 0.001
+# num_steps = 30000
+# batch_size = 64
+
+# # Network Parameters
+# image_dim = 784 # MNIST images are 28x28 pixels
+# hidden_dim = 512
+# latent_dim = 2
 
 # A custom initialization (see Xavier Glorot init)
 def glorot_init(shape):

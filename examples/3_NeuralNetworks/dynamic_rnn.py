@@ -13,6 +13,8 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 """
 
 from __future__ import print_function
+import matplotlib
+matplotlib.use("Agg")
 
 import tensorflow as tf
 import random
@@ -82,16 +84,47 @@ class ToySequenceData(object):
 #   MODEL
 # ==========
 
-# Parameters
-learning_rate = 0.01
-training_steps = 10000
-batch_size = 128
-display_step = 200
 
-# Network Parameters
-seq_max_len = 20 # Sequence max length
-n_hidden = 64 # hidden layer num of features
-n_classes = 2 # linear sequence or not
+import argparse
+
+parser = argparse.ArgumentParser(description="""Dynamic Recurrent Neural Network.
+
+TensorFlow implementation of a Recurrent Neural Network (LSTM) that performs
+dynamic computation over sequences with variable length. This example is using
+a toy dataset to classify linear sequences. The generated sequences have
+variable length.""")
+
+parser.add_argument("--learning_rate",type=float, default=0.01, help="model learning rate")
+parser.add_argument("--num_steps",type=int, default=10000, help="model num steps")
+parser.add_argument("--batch_size",type=int, default=128, help="model batch size")
+parser.add_argument("--display_step",type=int, default=200, help="model display step")
+
+parser.add_argument("--seq_max_len",type=int,default=20,help="Sequence max length")
+parser.add_argument("--n_hidden",type=int,default=64,help="hidden layer num of features ")
+parser.add_argument("--n_classes",type=int,default=2,help="linear sequence or not")
+
+args = parser.parse_args()
+
+
+learning_rate = args.learning_rate
+num_steps = args.num_steps
+batch_size = args.batch_size
+display_step = args.display_step
+seq_max_len = args.seq_max_len
+n_hidden = args.n_hidden
+n_classes = args.n_classes
+
+
+# # Parameters
+# learning_rate = 0.01
+# num_steps = 10000
+# batch_size = 128
+# display_step = 200
+
+# # Network Parameters
+# seq_max_len = 20 # Sequence max length
+# n_hidden = 64 # hidden layer num of features
+# n_classes = 2 # linear sequence or not
 
 trainset = ToySequenceData(n_samples=1000, max_seq_len=seq_max_len)
 testset = ToySequenceData(n_samples=500, max_seq_len=seq_max_len)
@@ -116,7 +149,7 @@ def dynamicRNN(x, seqlen, weights, biases):
     # Prepare data shape to match `rnn` function requirements
     # Current data input shape: (batch_size, n_steps, n_input)
     # Required shape: 'n_steps' tensors list of shape (batch_size, n_input)
-    
+
     # Unstack to get a list of 'n_steps' tensors of shape (batch_size, n_input)
     x = tf.unstack(x, seq_max_len, 1)
 
@@ -169,7 +202,7 @@ with tf.Session() as sess:
     # Run the initializer
     sess.run(init)
 
-    for step in range(1, training_steps + 1):
+    for step in range(1, num_steps + 1):
         batch_x, batch_y, batch_seqlen = trainset.next(batch_size)
         # Run optimization op (backprop)
         sess.run(optimizer, feed_dict={x: batch_x, y: batch_y,

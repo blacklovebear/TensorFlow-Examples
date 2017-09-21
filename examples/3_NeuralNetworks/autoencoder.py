@@ -26,19 +26,41 @@ import matplotlib.pyplot as plt
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
+import argparse
 
-# Training Parameters
-learning_rate = 0.01
-num_steps = 30000
-batch_size = 256
+parser = argparse.ArgumentParser(description="""Build a 2 layers auto-encoder with TensorFlow to compress images to a
+lower latent space and then reconstruct them.""")
 
-display_step = 1000
-examples_to_show = 10
+parser.add_argument("--learning_rate",type=float, default=0.01, help="model learning rate")
+parser.add_argument("--num_steps",type=int, default=30000, help="model num of step")
+parser.add_argument("--batch_size",type=int, default=256, help="model batch size")
+parser.add_argument("--display_step",type=int,default=1000,help="model display step")
 
-# Network Parameters
-num_hidden_1 = 256 # 1st layer num features
-num_hidden_2 = 128 # 2nd layer num features (the latent dim)
-num_input = 784 # MNIST data input (img shape: 28*28)
+parser.add_argument("--num_hidden_1",type=int,default=256,help="1st layer num features")
+parser.add_argument("--num_hidden_2",type=int,default=128,help="2nd layer num features")
+parser.add_argument("--num_input",type=int,default=784,help="MNIST data input (img shape: 28*28)")
+
+args = parser.parse_args()
+
+learning_rate=args.learning_rate
+num_steps=args.num_steps
+batch_size=args.batch_size
+display_step=args.display_step
+
+num_hidden_1=args.num_hidden_1
+num_hidden_2=args.num_hidden_2
+num_input=args.num_input
+
+# # Training Parameters
+# learning_rate = 0.01
+# num_steps = 30000
+# batch_size = 256
+# display_step = 1000
+
+# # Network Parameters
+# num_hidden_1 = 256 # 1st layer num features
+# num_hidden_2 = 128 # 2nd layer num features (the latent dim)
+# num_input = 784 # MNIST data input (img shape: 28*28)
 
 # tf Graph input (only pictures)
 X = tf.placeholder("float", [None, num_input])

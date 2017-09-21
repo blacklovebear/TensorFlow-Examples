@@ -16,6 +16,8 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 """
 
 from __future__ import division, print_function, absolute_import
+import matplotlib
+matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -25,16 +27,43 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
-# Training Params
-num_steps = 20000
-batch_size = 32
+import argparse
 
-# Network Params
-image_dim = 784 # 28*28 pixels * 1 channel
-gen_hidden_dim = 256
-disc_hidden_dim = 256
-noise_dim = 200 # Noise data points
+parser = argparse.ArgumentParser(description="""Deep Convolutional Generative Adversarial Network (DCGAN).
 
+Using deep convolutional generative adversarial networks (DCGAN) to generate
+digit images from a noise distribution.""")
+
+parser.add_argument("--learning_rate",type=float, default=0.01, help="model learning rate")
+parser.add_argument("--num_steps",type=int, default=20000, help="model num steps")
+parser.add_argument("--batch_size",type=int, default=32, help="model batch size")
+
+parser.add_argument("--image_dim",type=int,default=784,help="MNIST data input (img shape: 28*28)")
+parser.add_argument("--gen_hidden_dim",type=int,default=256,help="generate hidden dim ")
+parser.add_argument("--disc_hidden_dim",type=int,default=256,help="adversarial hidden dim")
+parser.add_argument("--noise_dim",type=int,default=200,help="generate noise dim")
+
+args = parser.parse_args()
+
+learning_rate = args.learning_rate
+num_steps = args.num_steps
+batch_size = args.batch_size
+image_dim = args.image_dim
+gen_hidden_dim = args.gen_hidden_dim
+disc_hidden_dim = args.disc_hidden_dim
+noise_dim = args.noise_dim
+
+
+# # Training Params
+# learning_rate=0.01
+# num_steps = 20000
+# batch_size = 32
+
+# # Network Params
+# image_dim = 784 # 28*28 pixels * 1 channel
+# gen_hidden_dim = 256
+# disc_hidden_dim = 256
+# noise_dim = 200 # Noise data points
 
 # Generator Network
 # Input: Noise, Output: Image
@@ -101,8 +130,8 @@ gen_loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
     logits=stacked_gan, labels=gen_target))
 
 # Build Optimizers
-optimizer_gen = tf.train.AdamOptimizer(learning_rate=0.001)
-optimizer_disc = tf.train.AdamOptimizer(learning_rate=0.001)
+optimizer_gen = tf.train.AdamOptimizer(learning_rate=learning_rate)
+optimizer_disc = tf.train.AdamOptimizer(learning_rate=learning_rate)
 
 # Training Variables for each optimizer
 # By default in TensorFlow, all variables are updated by each optimizer, so we
