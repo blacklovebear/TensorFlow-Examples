@@ -11,13 +11,13 @@ Author: Aymeric Damien
 Project: https://github.com/aymericdamien/TensorFlow-Examples/
 """
 from __future__ import division, print_function, absolute_import
+import helper
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
 # mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
 
 import tensorflow as tf
-import os
 
 import argparse
 
@@ -35,6 +35,7 @@ parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classe
 parser.add_argument("--dropout",type=float,default=0.75,help="Dropout, probability to keep units")
 
 parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+parser.add_argument("--model_name",type=str,default="test", help="model name")
 
 args = parser.parse_args()
 
@@ -48,7 +49,8 @@ num_input = args.num_input
 num_classes = args.num_classes
 dropout = args.dropout
 
-model_dir = "/tmp/tensorflow/" + os.path.basename(__file__)
+
+model_dir = helper.model_dir(__file__, args.model_name)
 mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 
 # Training Parameters
@@ -156,3 +158,6 @@ input_fn = tf.estimator.inputs.numpy_input_fn(
 e = model.evaluate(input_fn)
 
 print("Testing Accuracy:", e['accuracy'])
+
+
+helper.start_tensorboard()
