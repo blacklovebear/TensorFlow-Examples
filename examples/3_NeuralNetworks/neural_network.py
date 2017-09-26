@@ -18,7 +18,6 @@ from __future__ import print_function
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
 
 import tensorflow as tf
 import argparse
@@ -37,6 +36,10 @@ parser.add_argument("--n_hidden_2",type=int,default=256,help="2nd layer number o
 parser.add_argument("--num_input",type=int,default=784,help="MNIST data input (img shape: 28*28)")
 parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
 
+parser.add_argument("--model_dir",type=str,default="/tmp/tensorflow/neural_network", help="model and log saved dir")
+parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+
+
 args = parser.parse_args()
 
 learning_rate = args.learning_rate
@@ -49,6 +52,8 @@ n_hidden_2 = args.n_hidden_2 # 2nd layer number of neurons
 num_input = args.num_input # MNIST data input (img shape: 28*28)
 num_classes = args.num_classes # MNIST total classes (0-9 digits)
 
+model_dir = args.model_dir
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 # Parameters
 # learning_rate = 0.1
 # num_steps = 1000
@@ -110,7 +115,7 @@ def model_fn(features, labels, mode):
     return estim_specs
 
 # Build the Estimator
-model = tf.estimator.Estimator(model_fn)
+model = tf.estimator.Estimator(model_fn, model_dir=model_dir)
 
 # Define the input function for training
 input_fn = tf.estimator.inputs.numpy_input_fn(
