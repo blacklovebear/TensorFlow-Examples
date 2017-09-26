@@ -15,7 +15,7 @@ Project: https://github.com/aymericdamien/TensorFlow-Examples/
 """
 
 from __future__ import print_function
-import os
+import helper
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
@@ -38,6 +38,7 @@ parser.add_argument("--num_input",type=int,default=784,help="MNIST data input (i
 parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
 
 parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+parser.add_argument("--model_name",type=str,default="test", help="model name")
 
 
 args = parser.parse_args()
@@ -52,7 +53,7 @@ n_hidden_2 = args.n_hidden_2 # 2nd layer number of neurons
 num_input = args.num_input # MNIST data input (img shape: 28*28)
 num_classes = args.num_classes # MNIST total classes (0-9 digits)
 
-model_dir = "/tmp/tensorflow/" + os.path.basename(__file__)
+model_dir = helper.model_dir(__file__, args.model_name)
 mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 # Parameters
 # learning_rate = 0.1
@@ -134,5 +135,5 @@ e = model.evaluate(input_fn)
 
 print("Testing Accuracy:", e['accuracy'])
 
-import helper
+
 helper.start_tensorboard()
