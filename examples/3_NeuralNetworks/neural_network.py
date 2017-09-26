@@ -1,3 +1,4 @@
+# coding:utf8
 """ Neural Network.
 
 A 2-Hidden Layers Fully Connected Neural Network (a.k.a Multilayer Perceptron)
@@ -38,8 +39,7 @@ parser.add_argument("--num_input",type=int,default=784,help="MNIST data input (i
 parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
 
 parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
-parser.add_argument("--model_name",type=str,default="test", help="model name")
-
+parser.add_argument("--model_name",type=lambda s: unicode(s,'utf8').strip(u'模型'),default="test", help="model name")
 
 args = parser.parse_args()
 
@@ -54,6 +54,7 @@ num_input = args.num_input # MNIST data input (img shape: 28*28)
 num_classes = args.num_classes # MNIST total classes (0-9 digits)
 
 model_dir = helper.model_dir(__file__, args.model_name)
+
 mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 # Parameters
 # learning_rate = 0.1

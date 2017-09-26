@@ -1,3 +1,4 @@
+# coding:utf8
 """ Convolutional Neural Network.
 
 Build and train a convolutional neural network with TensorFlow.
@@ -35,7 +36,7 @@ parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classe
 parser.add_argument("--dropout",type=float,default=0.75,help="Dropout, probability to keep units")
 
 parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
-parser.add_argument("--model_name",type=str,default="test", help="model name")
+parser.add_argument("--model_name",type=lambda s: unicode(s,'utf8').strip(u'模型'),default="test", help="model name")
 
 args = parser.parse_args()
 
