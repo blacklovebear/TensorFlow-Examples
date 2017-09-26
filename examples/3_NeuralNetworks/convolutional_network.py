@@ -17,6 +17,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 # mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
 
 import tensorflow as tf
+import os
 
 import argparse
 
@@ -35,9 +36,6 @@ parser.add_argument("--dropout",type=float,default=0.75,help="Dropout, probabili
 
 parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
 
-model_dir = "/tmp/tensorflow/" + os.path.basename(__file__)
-mnist = input_data.read_data_sets(args.input_data, one_hot=False)
-
 args = parser.parse_args()
 
 # Training Parameters
@@ -49,6 +47,9 @@ batch_size = args.batch_size
 num_input = args.num_input
 num_classes = args.num_classes
 dropout = args.dropout
+
+model_dir = "/tmp/tensorflow/" + os.path.basename(__file__)
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 
 # Training Parameters
 # learning_rate = 0.001
