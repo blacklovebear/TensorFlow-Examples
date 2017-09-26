@@ -14,7 +14,7 @@ from __future__ import division, print_function, absolute_import
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
+# mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
 
 import tensorflow as tf
 
@@ -32,6 +32,11 @@ parser.add_argument("--batch_size",type=int, default=128, help="model batch size
 parser.add_argument("--num_input",type=int,default=784,help=" MNIST data input (img shape: 28*28)")
 parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
 parser.add_argument("--dropout",type=float,default=0.75,help="Dropout, probability to keep units")
+
+parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+
+model_dir = "/tmp/tensorflow/" + os.path.basename(__file__)
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 
 args = parser.parse_args()
 
@@ -132,7 +137,7 @@ def model_fn(features, labels, mode):
     return estim_specs
 
 # Build the Estimator
-model = tf.estimator.Estimator(model_fn)
+model = tf.estimator.Estimator(model_fn, model_dir=model_dir)
 
 # Define the input function for training
 input_fn = tf.estimator.inputs.numpy_input_fn(

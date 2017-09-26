@@ -36,7 +36,6 @@ parser.add_argument("--n_hidden_2",type=int,default=256,help="2nd layer number o
 parser.add_argument("--num_input",type=int,default=784,help="MNIST data input (img shape: 28*28)")
 parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
 
-parser.add_argument("--model_dir",type=str,default="/tmp/tensorflow/neural_network", help="model and log saved dir")
 parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
 
 
@@ -52,7 +51,7 @@ n_hidden_2 = args.n_hidden_2 # 2nd layer number of neurons
 num_input = args.num_input # MNIST data input (img shape: 28*28)
 num_classes = args.num_classes # MNIST total classes (0-9 digits)
 
-model_dir = args.model_dir
+model_dir = "/tmp/tensorflow/" + os.path.basename(__file__)
 mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 # Parameters
 # learning_rate = 0.1
