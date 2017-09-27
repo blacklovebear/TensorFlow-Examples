@@ -26,7 +26,7 @@ import tensorflow as tf
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
+# mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 import argparse
 
@@ -57,7 +57,7 @@ gen_hidden_dim = args.gen_hidden_dim
 disc_hidden_dim = args.disc_hidden_dim
 noise_dim = args.noise_dim
 
-
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 # # Training Params
 # learning_rate=0.01
 # num_steps = 20000

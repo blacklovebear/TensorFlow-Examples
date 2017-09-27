@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
+# mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 import argparse
 
 parser = argparse.ArgumentParser(description="""Build a 2 layers auto-encoder with TensorFlow to compress images to a
@@ -54,6 +54,8 @@ display_step=args.display_step
 num_hidden_1=args.num_hidden_1
 num_hidden_2=args.num_hidden_2
 num_input=args.num_input
+
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 
 # # Training Parameters
 # learning_rate = 0.01

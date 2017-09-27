@@ -19,7 +19,7 @@ from tensorflow.contrib import rnn
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
+# mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 '''
 To classify images using a recurrent neural network, we consider every image
@@ -55,6 +55,8 @@ num_input = args.num_input
 timesteps = args.timesteps
 num_hidden = args.num_hidden
 num_classes = args.num_classes
+
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 
 # Training Parameters
 # learning_rate = 0.001

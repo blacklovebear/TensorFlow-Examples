@@ -33,7 +33,7 @@ import tensorflow as tf
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
+# mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 import argparse
 
@@ -61,7 +61,7 @@ image_dim = args.image_dim
 hidden_dim = args.hidden_dim
 latent_dim = args.latent_dim
 
-
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 # # Parameters
 # learning_rate = 0.001
 # num_steps = 30000

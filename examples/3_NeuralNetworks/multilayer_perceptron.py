@@ -23,7 +23,7 @@ from __future__ import print_function
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
+# mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 import tensorflow as tf
 
@@ -59,6 +59,8 @@ n_hidden_1 = args.n_hidden_1
 n_hidden_2 = args.n_hidden_2
 n_input = args.n_input
 n_classes = args.n_classes
+
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 
 # # Parameters
 # learning_rate = 0.001

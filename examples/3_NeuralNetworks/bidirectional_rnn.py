@@ -21,7 +21,7 @@ import numpy as np
 
 # Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
+# mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 '''
 To classify images using a bidirectional recurrent neural network, we consider
@@ -59,7 +59,7 @@ timesteps = args.timesteps
 num_hidden = args.num_hidden
 num_classes = args.num_classes
 
-
+mnist = input_data.read_data_sets(args.input_data, one_hot=False)
 # # Training Parameters
 # learning_rate = 0.001
 # training_steps = 10000
