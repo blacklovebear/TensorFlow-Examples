@@ -1,3 +1,4 @@
+# coding:utf8
 """ Generative Adversarial Networks (GAN).
 
 Using generative adversarial networks (GAN) to generate digit images from a
@@ -46,6 +47,9 @@ parser.add_argument("--image_dim",type=int,default=784,help="MNIST data input (i
 parser.add_argument("--gen_hidden_dim",type=int,default=256,help="generate hidden dim ")
 parser.add_argument("--disc_hidden_dim",type=int,default=256,help="adversarial hidden dim")
 parser.add_argument("--noise_dim",type=int,default=100,help="generate noise dim")
+
+parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+parser.add_argument("--model_name",type=lambda s: unicode(s,'utf8').strip(u'模型'),default="test", help="model name")
 
 args = parser.parse_args()
 

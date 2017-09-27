@@ -1,3 +1,4 @@
+# coding:utf8
 """ Auto Encoder Example.
 
 Build a 2 layers auto-encoder with TensorFlow to compress images to a
@@ -39,6 +40,9 @@ parser.add_argument("--display_step",type=int,default=1000,help="model display s
 parser.add_argument("--num_hidden_1",type=int,default=256,help="1st layer num features")
 parser.add_argument("--num_hidden_2",type=int,default=128,help="2nd layer num features")
 parser.add_argument("--num_input",type=int,default=784,help="MNIST data input (img shape: 28*28)")
+
+parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+parser.add_argument("--model_name",type=lambda s: unicode(s,'utf8').strip(u'模型'),default="test", help="model name")
 
 args = parser.parse_args()
 

@@ -1,3 +1,4 @@
+# coding:utf8
 """ Bi-directional Recurrent Neural Network.
 
 A Bi-directional Recurrent Neural Network (LSTM) implementation example using
@@ -42,6 +43,9 @@ parser.add_argument("--num_input",type=int,default=28,help="MNIST data input (im
 parser.add_argument("--timesteps",type=int,default=28,help="timesteps")
 parser.add_argument("--num_hidden",type=int,default=128,help="hidden layer num of features")
 parser.add_argument("--num_classes",type=int,default=10,help="MNIST total classes (0-9 digits)")
+
+parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+parser.add_argument("--model_name",type=lambda s: unicode(s,'utf8').strip(u'模型'),default="test", help="model name")
 
 args = parser.parse_args()
 

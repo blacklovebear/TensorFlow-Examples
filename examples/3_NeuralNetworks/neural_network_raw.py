@@ -1,3 +1,4 @@
+# coding:utf8
 """ Neural Network.
 
 A 2-Hidden Layers Fully Connected Neural Network (a.k.a Multilayer Perceptron)

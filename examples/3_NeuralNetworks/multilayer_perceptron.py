@@ -1,3 +1,4 @@
+# coding:utf8
 """ Multilayer Perceptron.
 
 A Multilayer Perceptron (Neural Network) implementation example using
@@ -43,6 +44,9 @@ parser.add_argument("--n_hidden_1",type=int,default=256,help="1st layer num feat
 parser.add_argument("--n_hidden_2",type=int,default=256,help="2nd layer num features")
 parser.add_argument("--n_input",type=int,default=784,help="MNIST data input (img shape: 28*28)")
 parser.add_argument("--n_classes",type=int,default=10,help="MNIST data output classes")
+
+parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+parser.add_argument("--model_name",type=lambda s: unicode(s,'utf8').strip(u'模型'),default="test", help="model name")
 
 args = parser.parse_args()
 

@@ -1,3 +1,4 @@
+# coding:utf8
 """ Dynamic Recurrent Neural Network.
 
 TensorFlow implementation of a Recurrent Neural Network (LSTM) that performs
@@ -102,6 +103,9 @@ parser.add_argument("--display_step",type=int, default=200, help="model display 
 parser.add_argument("--seq_max_len",type=int,default=20,help="Sequence max length")
 parser.add_argument("--n_hidden",type=int,default=64,help="hidden layer num of features ")
 parser.add_argument("--n_classes",type=int,default=2,help="linear sequence or not")
+
+parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+parser.add_argument("--model_name",type=lambda s: unicode(s,'utf8').strip(u'模型'),default="test", help="model name")
 
 args = parser.parse_args()
 

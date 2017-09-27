@@ -1,3 +1,4 @@
+# coding:utf8
 """ Convolutional Neural Network.
 
 Build and train a convolutional neural network with TensorFlow.

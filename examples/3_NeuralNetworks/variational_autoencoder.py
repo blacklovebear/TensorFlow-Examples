@@ -1,3 +1,4 @@
+# coding:utf8
 """ Variational Auto-Encoder Example.
 
 Using a variational auto-encoder to generate digits images from noise.
@@ -48,6 +49,9 @@ parser.add_argument("--batch_size",type=int, default=64, help="model batch size"
 parser.add_argument("--image_dim",type=int,default=784,help="image dim num (28*28)")
 parser.add_argument("--hidden_dim",type=int,default=512,help="hidden dim num")
 parser.add_argument("--latent_dim",type=int,default=2,help="latent dim num")
+
+parser.add_argument("--input_data",type=str,default="/tmp/data/", help="model input data dir")
+parser.add_argument("--model_name",type=lambda s: unicode(s,'utf8').strip(u'模型'),default="test", help="model name")
 
 args = parser.parse_args()
 learning_rate = args.learning_rate
