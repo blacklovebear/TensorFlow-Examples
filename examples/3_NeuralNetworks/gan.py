@@ -62,7 +62,7 @@ gen_hidden_dim = args.gen_hidden_dim
 disc_hidden_dim = args.disc_hidden_dim
 noise_dim = args.noise_dim
 
-mnist = input_data.read_data_sets(args.input_data, one_hot=False)
+mnist = input_data.read_data_sets(args.input_data, one_hot=True)
 # # Training Params
 # learning_rate = 0.0002
 # num_steps = 100000

@@ -59,7 +59,7 @@ timesteps = args.timesteps
 num_hidden = args.num_hidden
 num_classes = args.num_classes
 
-mnist = input_data.read_data_sets(args.input_data, one_hot=False)
+mnist = input_data.read_data_sets(args.input_data, one_hot=True)
 # # Training Parameters
 # learning_rate = 0.001
 # training_steps = 10000

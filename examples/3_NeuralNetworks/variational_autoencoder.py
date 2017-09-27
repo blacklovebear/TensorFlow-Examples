@@ -61,7 +61,7 @@ image_dim = args.image_dim
 hidden_dim = args.hidden_dim
 latent_dim = args.latent_dim
 
-mnist = input_data.read_data_sets(args.input_data, one_hot=False)
+mnist = input_data.read_data_sets(args.input_data, one_hot=True)
 # # Parameters
 # learning_rate = 0.001
 # num_steps = 30000

@@ -55,7 +55,7 @@ num_hidden_1=args.num_hidden_1
 num_hidden_2=args.num_hidden_2
 num_input=args.num_input
 
-mnist = input_data.read_data_sets(args.input_data, one_hot=False)
+mnist = input_data.read_data_sets(args.input_data, one_hot=True)
 
 # # Training Parameters
 # learning_rate = 0.01

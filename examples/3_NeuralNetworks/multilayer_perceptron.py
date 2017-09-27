@@ -60,7 +60,7 @@ n_hidden_2 = args.n_hidden_2
 n_input = args.n_input
 n_classes = args.n_classes
 
-mnist = input_data.read_data_sets(args.input_data, one_hot=False)
+mnist = input_data.read_data_sets(args.input_data, one_hot=True)
 
 # # Parameters
 # learning_rate = 0.001
